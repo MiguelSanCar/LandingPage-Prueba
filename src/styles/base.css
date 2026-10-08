@@ -1,0 +1,75 @@
+﻿*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; margin: 0; letter-spacing: -0.02em; }
+p { margin: 0; }
+a { color: inherit; text-decoration: none; }
+ul { margin: 0; padding: 0; list-style: none; }
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 3px; border-radius: 6px; }
+
+/* ---------- Layout ---------- */
+.container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); }
+.section { padding-block: var(--section-y); position: relative; }
+.section--alt { background: var(--bg-soft); border-block: 1px solid var(--border); }
+.grad-text { background: var(--gradient-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* ---------- Cabecera de sección ---------- */
+.section-head { max-width: 680px; margin: 0 auto clamp(2.5rem, 5vw, 4rem); text-align: center; }
+.eyebrow {
+  display: inline-block; margin-bottom: 1rem;
+  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--accent-2);
+}
+.section-head h2 { font-size: var(--fs-h2); }
+.section-head p { margin-top: 1rem; color: var(--text-muted); font-size: var(--fs-lead); }
+
+/* ---------- Botones ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  padding: 0.9rem 1.6rem; border-radius: 999px; border: 1px solid transparent;
+  font-weight: 600; font-size: 1rem; white-space: nowrap;
+  transition: transform var(--t) var(--ease), box-shadow var(--t) var(--ease), background var(--t), border-color var(--t);
+}
+.btn svg { transition: transform var(--t) var(--ease); }
+.btn:hover svg { transform: translateX(3px); }
+.btn--primary { background: var(--gradient); color: #fff; box-shadow: 0 10px 30px -8px rgba(239, 68, 68, 0.7); }
+.btn--primary:hover { transform: translateY(-2px); box-shadow: 0 16px 40px -8px rgba(251, 113, 133, 0.55); }
+.btn--ghost { background: rgba(255, 255, 255, 0.03); border-color: var(--border-strong); color: var(--text); }
+.btn--ghost:hover { background: rgba(255, 255, 255, 0.07); transform: translateY(-2px); }
+.btn--lg { padding: 1.05rem 2rem; font-size: 1.05rem; }
+.btn--sm { padding: 0.6rem 1.2rem; font-size: 0.92rem; }
+
+/* ---------- Tarjeta genérica ---------- */
+.card {
+  background: linear-gradient(180deg, var(--surface-2), var(--surface));
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: clamp(1.4rem, 2.5vw, 2rem);
+  box-shadow: var(--shadow-card);
+  transition: transform var(--t) var(--ease), border-color var(--t);
+}
+.card:hover { transform: translateY(-4px); border-color: var(--border-strong); }
+.icon-box {
+  display: grid; place-items: center; width: 46px; height: 46px; margin-bottom: 1.25rem;
+  border-radius: 12px; color: var(--accent-2);
+  background: rgba(239, 68, 68, 0.12); border: 1px solid var(--border-strong);
+}
+
+/* ---------- Animación de entrada ---------- */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); transition-delay: var(--delay, 0ms); }
+.reveal.is-visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
+}

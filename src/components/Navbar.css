@@ -1,0 +1,34 @@
+﻿.navbar { position: fixed; inset: 0 0 auto 0; z-index: 50; transition: background var(--t), border-color var(--t), backdrop-filter var(--t); border-bottom: 1px solid transparent; }
+.navbar--solid { background: rgba(15, 7, 8, 0.8); backdrop-filter: blur(14px); border-color: var(--border); }
+.navbar .navbar__inner { max-width: none; padding-inline: 1rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; height: 72px; }
+
+.logo { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--font-display); font-weight: 800; font-size: 1.2rem; letter-spacing: -0.02em; }
+.logo__mark { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 9px; background: var(--gradient); color: #fff; font-size: 1rem; box-shadow: 0 6px 20px -6px rgba(239, 68, 68, 0.8); }
+.logo__360 { color: var(--accent-2); }
+
+.navbar__links { display: flex; align-items: center; gap: 2rem; margin-inline: auto; }
+.navbar__links a:not(.btn) { color: var(--text-muted); font-size: 0.95rem; font-weight: 500; transition: color var(--t); }
+.navbar__links a:not(.btn):hover { color: var(--text); }
+.navbar__mobile-cta, .navbar__toggle { display: none; }
+
+@media (max-width: 960px) {
+  .navbar__toggle {
+    display: grid; place-items: center; width: 44px; height: 44px; margin-left: auto;
+    background: transparent; border: 1px solid var(--border-strong); border-radius: 12px; position: relative;
+  }
+  .navbar__toggle svg { display: none; }
+  .bars, .bars::before { content: ''; position: absolute; left: 12px; right: 12px; height: 2px; background: var(--text); border-radius: 2px; transition: transform var(--t) var(--ease); }
+  .bars { top: 19px; transform: translateY(-3px); }
+  .bars::before { top: 0; transform: translateY(7px); }
+  .bars[data-open='true'] { transform: rotate(45deg); }
+  .bars[data-open='true']::before { transform: rotate(-90deg); }
+
+  .navbar__links {
+    position: absolute; top: 72px; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; margin: 0;
+    padding: 0.5rem var(--gutter) 1.5rem; background: rgba(15, 7, 8, 0.97); border-bottom: 1px solid var(--border);
+    max-height: 0; overflow: hidden; opacity: 0; visibility: hidden; transition: all var(--t) var(--ease);
+  }
+  .navbar__links.is-open { max-height: 480px; opacity: 1; visibility: visible; }
+  .navbar__links a:not(.btn) { padding: 0.9rem 0; border-bottom: 1px solid var(--border); font-size: 1.05rem; }
+  .navbar__mobile-cta { display: inline-flex; margin-top: 1rem; }
+}

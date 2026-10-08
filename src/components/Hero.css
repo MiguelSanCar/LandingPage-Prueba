@@ -1,0 +1,34 @@
+﻿.hero { position: relative; overflow: hidden; padding-top: calc(72px + clamp(3rem, 7vw, 6rem)); padding-bottom: clamp(3.5rem, 7vw, 6rem); }
+.hero::before { /* rejilla sutil */
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 64px 64px; opacity: 0.35;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 75%);
+}
+.hero__glow { position: absolute; border-radius: 50%; filter: blur(110px); pointer-events: none; }
+.hero__glow--a { width: 520px; height: 520px; top: -160px; left: -120px; background: rgba(239, 68, 68, 0.35); }
+.hero__glow--b { width: 440px; height: 440px; top: 80px; right: -140px; background: rgba(251, 113, 133, 0.2); }
+
+.hero__inner { position: relative; display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: clamp(2.5rem, 5vw, 4.5rem); }
+.hero__badge {
+  display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.4rem 0.95rem; margin-bottom: 1.5rem;
+  border: 1px solid var(--border-strong); border-radius: 999px; background: rgba(239, 68, 68, 0.1);
+  font-size: 0.85rem; font-weight: 500; color: #fecaca;
+}
+.hero__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-3); box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.6); animation: pulse 2s infinite; }
+@keyframes pulse { 70% { box-shadow: 0 0 0 9px rgba(52, 211, 153, 0); } 100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); } }
+
+.hero__title { font-size: var(--fs-hero); font-weight: 800; line-height: 1.04; }
+.hero__subtitle { margin-top: 1.5rem; max-width: 540px; font-size: var(--fs-lead); color: var(--text-muted); }
+.hero__actions { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 2.25rem; }
+.hero__note { display: flex; align-items: center; gap: 0.5rem; margin-top: 1.4rem; font-size: var(--fs-small); color: var(--text-dim); }
+.hero__note svg { color: var(--accent-3); }
+
+@media (max-width: 960px) {
+  .hero__inner { grid-template-columns: 1fr; }
+  .hero__copy { text-align: center; display: flex; flex-direction: column; align-items: center; }
+  .hero__actions { justify-content: center; }
+}
+@media (max-width: 480px) {
+  .hero__actions .btn { width: 100%; }
+}
